@@ -127,6 +127,12 @@ export default function QuoteBuilder() {
         text="Adjust guest counts, select hospitality tiers, add structural services, and calculate budgets in real time."
         image="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=85"
         size="lg"
+        align="top"
+        transparent
+        cta={{
+          label: "Get a Free Quote",
+          onClick: () => document.getElementById("delegate-count")?.scrollIntoView({ behavior: "smooth" }),
+        }}
       />
 
       <section className="section-band">
@@ -136,7 +142,7 @@ export default function QuoteBuilder() {
           <div className="grid gap-8">
 
             {/* Step 1: Guest Count */}
-            <div className="card p-7">
+            <div id="delegate-count" className="card p-7">
               <div className="mb-4 flex items-center justify-between">
                 <span className="flex items-center gap-2.5 text-sm font-extrabold uppercase tracking-wider text-sky-700">
                   <FaUsers className="text-lg" /> Step 1: Delegate Count

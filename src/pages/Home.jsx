@@ -30,7 +30,7 @@ export default function Home() {
       <section className="bg-paper py-20">
         <div className="container-pad grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <Reveal>
-            <img className="aspect-[4/5] w-full rounded-2xl object-cover shadow-soft" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=85" alt="Elegant event table setting" />
+            <img className="aspect-[4/4.2] w-full rounded-2xl object-cover shadow-soft" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=85" alt="Elegant event table setting" />
           </Reveal>
           <Reveal delay={0.08}>
             <p className="eyebrow mb-3">About PMH</p>
@@ -89,7 +89,10 @@ export default function Home() {
         <div className="logo-marquee">
           <div className="logo-track">
             {[...partners, ...partners].map((partner, index) => (
-              <span key={`${partner}-${index}`} className="mx-4 grid h-16 w-44 place-items-center rounded-2xl border border-line bg-white font-display text-xl font-semibold text-ink/45">
+              <span
+                key={`${partner}-${index}`}
+                className="mx-4 flex h-16 min-w-44 items-center justify-center whitespace-nowrap rounded-2xl border border-line bg-white px-6 font-display text-xl font-semibold text-ink/45"
+              >
                 {partner}
               </span>
             ))}

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaImages, FaStar, FaBuilding, FaEarthAmericas } from "react-icons/fa6";
 import { stats } from "../data/siteData.js";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const mainImage =
   "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=85";
@@ -10,13 +10,7 @@ const secondaryImage =
   "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=85";
 
 export default function Hero() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    navigate(`/request-proposal${email ? `?email=${encodeURIComponent(email)}` : ""}`);
-  }
+  const { user } = useAuth();
 
   return (
     <section className="relative overflow-hidden bg-cream pb-20 pt-14 lg:pb-28 lg:pt-20">
@@ -54,28 +48,31 @@ export default function Hero() {
             Curated destination spaces, executive logistics, delegate hosting, and premium dinner experiences managed with absolute precision.
           </motion.p>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="mt-9 flex max-w-md items-center gap-2 rounded-full border border-line bg-white p-1.5 pl-5 shadow-soft"
+          <motion.div
+            className="mt-9 flex flex-wrap items-center gap-4"
             initial={{ opacity: 0, y: 26 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.24 }}
           >
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your work email"
-              className="min-w-0 flex-1 bg-transparent text-sm text-ink placeholder:text-ink/40 focus:outline-none"
-            />
-            <button type="submit" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-sky-600 text-white transition hover:bg-sky-700">
-              <FaArrowRight />
-            </button>
-          </motion.form>
+            {user ? (
+              <Link
+                to="/request-proposal"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-sky-700"
+              >
+                Request Proposal <FaArrowRight />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-sky-700"
+              >
+                Sign In
+              </Link>
+            )}
+          </motion.div>
 
           <motion.div
-            className="mt-4 flex flex-wrap items-center gap-4"
+            className="mt-6 flex flex-wrap items-center gap-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}

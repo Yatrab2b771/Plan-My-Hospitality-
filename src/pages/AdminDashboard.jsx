@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { showToast } from "../components/Toast.jsx";
 import Reveal from "../components/Reveal.jsx";
@@ -186,7 +185,6 @@ export default function AdminDashboard() {
   const [noteModal,  setNoteModal]  = useState(null);
 
   const { logout } = useAuth();
-  const navigate   = useNavigate();
 
   useEffect(() => {
     const data = safeLoadArray("pmh_enquiries");
@@ -232,7 +230,7 @@ export default function AdminDashboard() {
     try {
       logout();
     } finally {
-      navigate("/");
+      window.location.href = "/index.html";
     }
   };
 

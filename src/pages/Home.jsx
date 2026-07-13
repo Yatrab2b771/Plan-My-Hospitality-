@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FaArrowRight, FaCheck, FaRegStar } from "react-icons/fa6";
 import Hero from "../components/Hero.jsx";
 import Reveal from "../components/Reveal.jsx";
@@ -44,7 +43,7 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <Link to="/about" className="btn-primary mt-8">Explore PMH <FaArrowRight /></Link>
+            <a href="/about.html" className="btn-primary mt-8">Explore PMH <FaArrowRight /></a>
           </Reveal>
         </div>
       </section>
@@ -54,18 +53,18 @@ export default function Home() {
           <SectionTitle eyebrow="Portfolio" title="Recent projects with distinct prestige." text="A showcase of corporate general meetings, brand reveals, and executive conferences designed for maximum impact." />
           <div className="grid gap-6 md:grid-cols-3">
             {portfolio.map((item, index) => (
-  <Reveal key={item.title} delay={index * 0.06} className="h-full">
-    <Link to="/gallery" className="group flex h-full flex-col overflow-hidden card">
-      <div className="overflow-hidden">
-        <img className="h-72 w-full object-cover transition duration-500 group-hover:scale-105" src={item.image} alt={item.title} />
-      </div>
-      <div className="flex flex-1 flex-col justify-center p-5">
-        <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-sky-600">{item.tag}</p>
-        <h3 className="mt-2 font-display text-xl font-semibold text-ink">{item.title}</h3>
-      </div>
-    </Link>
-  </Reveal>
-))}
+              <Reveal key={item.title} delay={index * 0.06} className="h-full">
+                <a href="/gallery.html" className="group flex h-full flex-col overflow-hidden card">
+                  <div className="overflow-hidden">
+                    <img className="h-72 w-full object-cover transition duration-500 group-hover:scale-105" src={item.image} alt={item.title} />
+                  </div>
+                  <div className="flex flex-1 flex-col justify-center p-5">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-sky-600">{item.tag}</p>
+                    <h3 className="mt-2 font-display text-xl font-semibold text-ink">{item.title}</h3>
+                  </div>
+                </a>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -81,7 +80,7 @@ export default function Home() {
         <div className="container-pad text-center">
           <FaRegStar className="mx-auto text-3xl text-sky-500" />
           <h2 className="mx-auto mt-5 max-w-3xl font-display text-3xl font-semibold text-ink md:text-5xl">Deploy your next corporate event with precision hospitality.</h2>
-          <Link to="/request-proposal" className="btn-primary mt-8">Request Proposal</Link>
+          <a href="/request-proposal.html" className="btn-primary mt-8">Request Proposal</a>
         </div>
       </section>
 

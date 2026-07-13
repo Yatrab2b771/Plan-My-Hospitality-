@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { List, X, User } from "@phosphor-icons/react";
 import logo from "../assets/logo.svg";
@@ -25,10 +24,13 @@ export default function Navbar() {
     };
   }, [open]);
 
-  const pillLinkClass = ({ isActive }) =>
-    `rounded-full px-4 py-2 text-xs font-semibold transition ${
-      isActive ? "bg-white text-sky-600 shadow-sm" : "text-ink/60 hover:text-ink"
-    }`;
+  const currentPath = typeof window !== "undefined" ? window.location.pathname : "";
+  const isLinkActive = (path) => {
+    if (path === "/index.html" || path === "/") {
+      return currentPath === "/" || currentPath === "/index.html" || currentPath.endsWith("/index.html") || currentPath === "";
+    }
+    return currentPath === path || currentPath.endsWith(path);
+  };
 
   return (
     <>
@@ -36,8 +38,8 @@ export default function Navbar() {
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${solid ? "bg-cream/90 shadow-card backdrop-blur-xl" : "bg-cream/55 backdrop-blur-md"}`}
       >
         <nav className="container-pad flex h-20 items-center justify-between gap-6">
-          <Link
-            to="/"
+          <a
+            href="/index.html"
             className="flex items-center gap-3 text-ink"
             onClick={() => setOpen(false)}
           >
@@ -54,37 +56,46 @@ export default function Navbar() {
                 Private Limited
               </span>
             </span>
-          </Link>
+          </a>
 
           <div className="hidden items-center gap-1 rounded-full bg-mist p-1.5 lg:flex">
-            {navLinks.map((link) => (
-              <NavLink key={link.path} to={link.path} className={pillLinkClass}>
-                {link.label}
-              </NavLink>
-            ))}
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.path);
+              return (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
+                    active ? "bg-white text-sky-600 shadow-sm" : "text-ink/60 hover:text-ink"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           {/* Desktop right buttons */}
           <div className="hidden items-center gap-3 lg:flex">
             {user ? (
-              <Link
-                to={user.role === "admin" ? "/admin" : "/account"}
+              <a
+                href={user.role === "admin" ? "/admin.html" : "/account.html"}
                 className="btn-secondary flex items-center gap-2 whitespace-nowrap"
               >
                 <User weight="bold" />
                 {user.role === "admin" ? "Dashboard" : user.name}
-              </Link>
+              </a>
             ) : (
-              <Link to="/login" className="btn-secondary whitespace-nowrap">
+              <a href="/login.html" className="btn-secondary whitespace-nowrap">
                 Sign In
-              </Link>
+              </a>
             )}
-            <Link
-              to="/request-proposal"
+            <a
+              href="/request-proposal.html"
               className="rounded-full bg-sky-600 px-5 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-sky-700 whitespace-nowrap"
             >
               Request Proposal
-            </Link>
+            </a>
           </div>
 
           <button
@@ -116,8 +127,8 @@ export default function Navbar() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mb-8 flex items-center justify-between">
-                <Link
-                  to="/"
+                <a
+                  href="/index.html"
                   className="flex items-center gap-3 font-display text-lg font-semibold text-ink"
                   onClick={() => setOpen(false)}
                 >
@@ -127,7 +138,7 @@ export default function Navbar() {
                     className="h-9 w-9"
                   />
                   <span>Plan My Hospitality</span>
-                </Link>
+                </a>
                 <button
                   className="grid h-10 w-10 place-items-center rounded-full bg-mist text-ink"
                   aria-label="Close menu"
@@ -138,47 +149,50 @@ export default function Navbar() {
               </div>
 
               <div className="grid gap-2">
-                {navLinks.map((link) => (
-                  <NavLink
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setOpen(false)}
-                    className={({ isActive }) =>
-                      `rounded-xl px-4 py-3 text-base font-semibold ${isActive ? "bg-sky-50 text-sky-600" : "text-ink/75 hover:bg-mist"}`
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-                ))}
+                {navLinks.map((link) => {
+                  const active = isLinkActive(link.path);
+                  return (
+                    <a
+                      key={link.path}
+                      href={link.path}
+                      onClick={() => setOpen(false)}
+                      className={`rounded-xl px-4 py-3 text-base font-semibold ${
+                        active ? "bg-sky-50 text-sky-600" : "text-ink/75 hover:bg-mist"
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
               </div>
 
               {/* Mobile auth button */}
               {user ? (
-                <Link
-                  to={user.role === "admin" ? "/admin" : "/account"}
+                <a
+                  href={user.role === "admin" ? "/admin.html" : "/account.html"}
                   onClick={() => setOpen(false)}
                   className="btn-secondary mt-4 flex w-full items-center justify-center gap-2"
                 >
                   <User weight="bold" />
                   {user.role === "admin" ? "Dashboard" : user.name}
-                </Link>
+                </a>
               ) : (
-                <Link
-                  to="/login"
+                <a
+                  href="/login.html"
                   onClick={() => setOpen(false)}
-                  className="btn-secondary mt-4 w-full justify-center"
+                  className="btn-secondary mt-4 w-full justify-center flex items-center"
                 >
                   Sign In
-                </Link>
+                </a>
               )}
 
-              <Link
-                to="/contact"
+              <a
+                href="/request-proposal.html"
                 onClick={() => setOpen(false)}
                 className="rounded-full bg-sky-600 mt-3 w-full justify-center flex items-center py-3 text-sm font-semibold text-white shadow-sm hover:bg-sky-700"
               >
                 Request Proposal
-              </Link>
+              </a>
             </motion.aside>
           </motion.div>
         )}

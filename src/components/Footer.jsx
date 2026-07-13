@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaLocationDot, FaPhone, FaXTwitter, FaEnvelope } from "react-icons/fa6";
 import logo from "../assets/logo.svg";
 import { navLinks } from "../data/siteData.js";
@@ -8,10 +7,10 @@ export default function Footer() {
     <footer className="border-t border-line bg-black pt-16 text-white">
       <div className="container-pad grid gap-10 pb-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link to="/" className="flex items-center gap-3">
+          <a href="/index.html" className="flex items-center gap-3">
             <img src={logo} alt="Plan My Hospitality crest" className="h-10 w-10" />
             <span className="font-display text-xl font-semibold tracking-wide text-white">Plan My Hospitality</span>
-          </Link>
+          </a>
           <p className="mt-4 max-w-sm leading-7 text-white/60">
             Premium corporate event production, high-protocol hospitality, elite venue procurement, and custom delegate logistics for global enterprises.
           </p>
@@ -27,15 +26,15 @@ export default function Footer() {
           <h4 className="mb-5 text-sm font-extrabold uppercase tracking-[0.24em] text-sky-600">Navigation</h4>
           <div className="grid gap-3">
             {navLinks.map((link) => (
-              <Link key={link.path} to={link.path} className="text-white/60 transition hover:text-white">
+              <a key={link.path} href={link.path} className="text-white/60 transition hover:text-white text-sm">
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
         </div>
         <div>
           <h4 className="mb-5 text-sm font-extrabold uppercase tracking-[0.24em] text-sky-600">Our Services</h4>
-          <div className="grid gap-3 text-white/60">
+          <div className="grid gap-3 text-white/60 text-sm">
             <span>Conferences & Summits</span>
             <span>Executive Retreats</span>
             <span>Venue Procurement</span>
@@ -45,11 +44,11 @@ export default function Footer() {
         </div>
         <div>
           <h4 className="mb-5 text-sm font-extrabold uppercase tracking-[0.24em] text-sky-600">Headquarters</h4>
-          <div className="grid gap-4 text-white/70">
+          <div className="grid gap-4 text-white/70 text-sm">
             <p className="flex gap-3"><FaLocationDot className="mt-1 text-sky-500" /> Sector 62, Noida, India</p>
             <a href="tel:+919999999999" className="flex gap-3 transition hover:text-white"><FaPhone className="mt-1 text-sky-500" /> +91 99999 99999</a>
             <a href="mailto:contact@planmyhospitality.com" className="flex gap-3 transition hover:text-white"><FaEnvelope className="mt-1 text-sky-500" /> contact@planmyhospitality.com</a>
-            <Link to="/request-proposal" className="btn-primary mt-2 w-fit">Request Proposal</Link>
+            <a href="/request-proposal.html" className="btn-primary mt-2 w-fit">Request Proposal</a>
           </div>
         </div>
       </div>

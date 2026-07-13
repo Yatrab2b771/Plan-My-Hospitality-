@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 export default function AboutHero({ title, text, image }) {
@@ -37,12 +36,12 @@ export default function AboutHero({ title, text, image }) {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                to="/quote-builder"
+              <a
+                href="/quote-builder.html"
                 className="rounded-full bg-sky-600 px-6 py-3 text-sm font-bold text-white shadow-glow transition hover:bg-sky-700"
               >
                 Request Proposal
-              </Link>
+              </a>
               <button
                 type="button"
                 onClick={scrollToNext}

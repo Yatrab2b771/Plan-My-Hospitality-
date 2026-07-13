@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { FaUser, FaEnvelope, FaCalendarDay, FaBuilding, FaRightFromBracket, FaInbox } from "react-icons/fa6";
 
 export default function ConsumerAccount() {
   const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const [enquiries, setEnquiries] = useState([]);
 
   useEffect(() => {
-    if (!user) { navigate("/login"); return; }
+    if (!user) { window.location.href = "/login.html"; return; }
     const all = JSON.parse(localStorage.getItem("pmh_enquiries") || "[]");
     // Show only enquiries matching logged-in user email
     const mine = all.filter((e) => e.email === user.email);
     setEnquiries(mine);
-  }, [user, navigate]);
+  }, [user]);
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    window.location.href = "/index.html";
   };
 
   if (!user) return null;

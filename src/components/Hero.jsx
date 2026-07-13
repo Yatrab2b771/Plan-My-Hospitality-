@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaImages, FaStar, FaBuilding, FaEarthAmericas } from "react-icons/fa6";
 import { stats } from "../data/siteData.js";
@@ -55,19 +54,19 @@ export default function Hero() {
             transition={{ delay: 0.24 }}
           >
             {user ? (
-              <Link
-                to="/request-proposal"
+              <a
+                href="/request-proposal.html"
                 className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-sky-700"
               >
                 Request Proposal <FaArrowRight />
-              </Link>
+              </a>
             ) : (
-              <Link
-                to="/login"
+              <a
+                href="/login.html"
                 className="inline-flex items-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-sky-700"
               >
                 Sign In
-              </Link>
+              </a>
             )}
           </motion.div>
 
@@ -77,9 +76,9 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <Link to="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-ink/70 hover:text-sky-600">
+            <a href="/gallery.html" className="inline-flex items-center gap-2 text-sm font-semibold text-ink/70 hover:text-sky-600">
               <FaImages /> View Projects
-            </Link>
+            </a>
             <span className="h-4 w-px bg-line" />
             <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink/70">
               <FaStar className="text-sky-500" /> {stats[1].value} Fortune 500 clients trust PMH

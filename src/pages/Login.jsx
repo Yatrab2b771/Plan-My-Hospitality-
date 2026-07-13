@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import logo from "../assets/logo.svg";
 
 export default function Login() {
   const { login, register } = useAuth();
-  const navigate = useNavigate();
   const [tab, setTab] = useState("login"); // "login" | "register"
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
@@ -20,7 +18,7 @@ export default function Login() {
     if (tab === "login") {
       const result = login(form.email, form.password);
       if (result.success) {
-        navigate(result.role === "admin" ? "/admin" : "/account");
+        window.location.href = result.role === "admin" ? "/admin.html" : "/account.html";
       } else {
         setError(result.message);
       }
@@ -28,7 +26,7 @@ export default function Login() {
       if (!form.name.trim()) return setError("Name is required.");
       const result = register(form.name, form.email, form.password);
       if (result.success) {
-        navigate("/account");
+        window.location.href = "/account.html";
       } else {
         setError(result.message);
       }

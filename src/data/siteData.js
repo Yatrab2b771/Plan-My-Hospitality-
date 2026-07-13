@@ -10,13 +10,13 @@ import {
 } from "react-icons/pi";
 
 export const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Gallery", path: "/gallery" },
-  { label: "About", path: "/about" },
-  { label: "Venues", path: "/venues" },
-  { label: "Quote Builder", path: "/quote-builder" },
-  { label: "Contact", path: "/contact" },
+  { label: "Home", path: "/index.html" },
+  { label: "Services", path: "/services.html" },
+  { label: "Gallery", path: "/gallery.html" },
+  { label: "About", path: "/about.html" },
+  { label: "Venues", path: "/venues.html" },
+  { label: "Quote Builder", path: "/quote-builder.html" },
+  { label: "Contact", path: "/contact.html" },
 ];
 
 export const heroSlides = [

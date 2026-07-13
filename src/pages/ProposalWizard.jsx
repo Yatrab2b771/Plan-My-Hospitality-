@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaLocationDot, FaUsers, FaCheck, FaArrowRight, FaArrowLeft,
@@ -411,7 +410,6 @@ function StepDetails({ data, set, onSubmit }) {
 
 // ─── Main Wizard ──────────────────────────────────────────────────────────────
 export default function ProposalWizard() {
-  const navigate = useNavigate();
   const [step, setStep] = useState(0);
 
   const [form, setForm] = useState({
@@ -463,7 +461,7 @@ export default function ProposalWizard() {
     const existing = JSON.parse(localStorage.getItem("pmh_enquiries") || "[]");
     localStorage.setItem("pmh_enquiries", JSON.stringify([enquiry, ...existing]));
     showToast("Proposal submitted! We'll be in touch shortly.");
-    setTimeout(() => navigate("/"), 1800);
+    setTimeout(() => { window.location.href = "/index.html"; }, 1800);
   };
 
   return (
